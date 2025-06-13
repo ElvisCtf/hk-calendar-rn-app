@@ -1,90 +1,48 @@
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { useState } from 'react';
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import YearPicker from "@/features/calendar/components/YearPicker";
+import MonthPicker from "@/features/calendar/components/MonthPicker";
+import CalendarGrid from "@/features/calendar/components/CalendarGrid";
+import Spacer from "@/common/components/Spacer";
 
-export default function Index() {
-  const [year, setYear] = useState(2025)
-  const [month, setMonth] = useState(6)
 
+const Index = () => {
+  const [year, setYear] = useState(2025);
+  const [month, setMonth] = useState(6);
+  
   function nextMonth() {
-    setMonth(prev => prev >= 12 ? 1 : prev + 1)
+    setMonth(prev => prev >= 12 ? 1 : prev + 1);
   }
 
   function prevMonth() {
-    setMonth(prev => prev <= 1 ? 12 : prev - 1)
+    setMonth(prev => prev <= 1 ? 12 : prev - 1);
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.hStack}>
-        <Text style={styles.title}>year</Text>
-        
-        <TouchableOpacity onPress={() => setYear(prev => prev + 1)}>
-          <Text style={styles.icon}>+</Text>
-        </TouchableOpacity>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
 
-        <Text style={styles.text}>{year}</Text>
-        
-        <TouchableOpacity onPress={() => setYear(prev => prev - 1)}>
-          <Text style={styles.icon}>+</Text>
-        </TouchableOpacity>
-      </View>
+        <YearPicker year={year} setYear={setYear}/>
 
-      <Vspacer size={16} />
+        <Spacer height={16} />
 
-      <View style={styles.hStack}>
-        <Text style={styles.title}>month</Text>
+        <MonthPicker month={month} setMonth={setMonth}/>
 
-        <TouchableOpacity onPress={nextMonth}>
-          <Text style={styles.icon}>+</Text>
-        </TouchableOpacity>
+        <Spacer height={32} />
 
-        <Text style={styles.text}>{month}</Text>
+        <CalendarGrid />
 
-        <TouchableOpacity onPress={prevMonth}>
-          <Text style={styles.icon}>-</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
-const Vspacer = ({ size = 10 }) => <View style={{ height: size }} />;
+export default Index;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
     padding: 16
-  },
-
-  vStack: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: 16
-  },
-
-  hStack: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 24,
-    width: '100%'
-  },
-
-  title: {
-    fontSize: 17,
-    width: 64
-  },
-
-  text: {
-    fontSize: 17,
-    textAlign: 'center',
-    width: 48,
-  },
-
-  icon: {
-    fontSize: 24,
-    color: '#841584'
   }
 });
