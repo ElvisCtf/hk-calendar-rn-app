@@ -7,9 +7,13 @@ import CalendarGrid from "@/features/calendar/components/CalendarGrid";
 import Spacer from "@/common/components/Spacer";
 
 
+var date = new Date();
+var currentYear = date.getFullYear()
+var currentMonth = date.getMonth() + 1
+
 const Index = () => {
-  const [year, setYear] = useState(2025);
-  const [month, setMonth] = useState(6);
+  const [year, setYear] = useState(currentYear);
+  const [month, setMonth] = useState(currentMonth);
   
   function nextMonth() {
     setMonth(prev => prev >= 12 ? 1 : prev + 1);
@@ -31,7 +35,7 @@ const Index = () => {
 
         <Spacer height={32} />
 
-        <CalendarGrid />
+        <CalendarGrid year={year} month={month}/>
 
       </SafeAreaView>
     </SafeAreaProvider>
