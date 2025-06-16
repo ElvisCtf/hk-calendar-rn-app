@@ -11,14 +11,14 @@ const MonthPicker: React.FC<MonthPickerProps> = ({month, setMonth}) => {
         <View style={styles.hStack}>
             <Text style={styles.title}>month</Text>
         
-            <TouchableOpacity onPress={() => setMonth(prev => prev + 1)}>
-                <Text style={styles.icon}>+</Text>
+            <TouchableOpacity onPress={() => setMonth(prev => prev - 1)}>
+                <Text style={styles.icon}>-</Text>
             </TouchableOpacity>
         
             <Text style={styles.text}>{month}</Text>
         
-            <TouchableOpacity onPress={() => setMonth(prev => prev - 1)}>
-                <Text style={styles.icon}>-</Text>
+            <TouchableOpacity onPress={() => setMonth(prev => prev + 1)}>
+                <Text style={styles.icon}>+</Text>
             </TouchableOpacity>
         </View>
     );

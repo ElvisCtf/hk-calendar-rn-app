@@ -11,14 +11,14 @@ const YearPicker: React.FC<YearPickerProps> = ({year, setYear}) => {
         <View style={styles.hStack}>
             <Text style={styles.title}>year</Text>
         
-            <TouchableOpacity onPress={() => setYear(prev => prev + 1)}>
-                <Text style={styles.icon}>+</Text>
+            <TouchableOpacity onPress={() => setYear(prev => prev - 1)}>
+                <Text style={styles.icon}>-</Text>
             </TouchableOpacity>
         
             <Text style={styles.text}>{year}</Text>
         
-            <TouchableOpacity onPress={() => setYear(prev => prev - 1)}>
-                <Text style={styles.icon}>-</Text>
+            <TouchableOpacity onPress={() => setYear(prev => prev + 1)}>
+                <Text style={styles.icon}>+</Text>
             </TouchableOpacity>
         </View>
     );
