@@ -10,16 +10,18 @@ const MonthPicker: React.FC<MonthPickerProps> = ({month, setMonth}) => {
     return (
         <View style={styles.hStack}>
             <Text style={styles.title}>month</Text>
-        
-            <TouchableOpacity onPress={() => setMonth(prev => prev - 1)}>
-                <Text style={styles.icon}>-</Text>
-            </TouchableOpacity>
-        
-            <Text style={styles.text}>{month}</Text>
-        
-            <TouchableOpacity onPress={() => setMonth(prev => prev + 1)}>
-                <Text style={styles.icon}>+</Text>
-            </TouchableOpacity>
+
+            <View style={styles.group}>
+              <TouchableOpacity onPress={() => setMonth(prev => prev - 1)}>
+                  <Text style={styles.icon}>-</Text>
+              </TouchableOpacity>
+          
+              <Text style={styles.text}>{month}</Text>
+          
+              <TouchableOpacity onPress={() => setMonth(prev => prev + 1)}>
+                  <Text style={styles.icon}>+</Text>
+              </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -30,9 +32,13 @@ const styles = StyleSheet.create({
   hStack: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     gap: 24,
     width: '100%'
+  },
+  group: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   title: {
     fontSize: 17,

@@ -6,11 +6,12 @@ const cardWidth = (Dimensions.get('window').width - 32 - (7 * cardMargin * 2)) /
 
 type CalendarGridProps = {
     year: number,
-    month: number
+    month: number,
+    isShowThisMonthOnly: boolean
 };
 
-const CalendarGrid: React.FC<CalendarGridProps> = ({year, month}) => {
-    let array = getCalendar(year, month);
+const CalendarGrid: React.FC<CalendarGridProps> = ({year, month, isShowThisMonthOnly}) => {
+    let array = getCalendar(year, month, isShowThisMonthOnly);
 
     return (
         <FlatList

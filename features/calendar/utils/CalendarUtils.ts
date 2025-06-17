@@ -14,7 +14,15 @@ export enum CardType {
     Empty
 }
 
-export function getCalendar(year: number, month: number) {
+export function getCurrentYear() {
+    return (new Date).getFullYear()
+}
+
+export function getCurrentMonth() {
+    return (new Date).getMonth() + 1
+}
+
+export function getCalendar(year: number, month: number, isShowThisMonthOnly: boolean) {
     let result: DayModel[] = [];
     
     const thisMonth = getThisMonthIndices(year, month);
@@ -24,16 +32,23 @@ export function getCalendar(year: number, month: number) {
 
     for (let i = 0; i < 42; i++) {
         if (i < 7) {
+            // add header card SUN ~ SAT
             result.push({key: `${i}`, type: CardType.Header, label: weekdaysStartWithSUN[i]});
         } else if (i >= thisMonth.startIndex && i <= thisMonth.endIndex) {
+            // add selected month date card
             result.push({key: `${i}`, type: i % 7 == 0 ? CardType.Holiday : CardType.Day, label: `${j}`});
             j+=1;
-        } else if (i > thisMonth.startIndex) {
+        } else if (i < thisMonth.startIndex && !isShowThisMonthOnly) {
+            // add previous month date card
+            result.push({key: `${i}`, type: CardType.Empty, label: `${l}`});
+            l+=1
+        } else if (i > thisMonth.endIndex && !isShowThisMonthOnly){
+            // add next month date card
             result.push({key: `${i}`, type: CardType.Empty, label: `${k}`});
             k+=1;
         } else {
-            result.push({key: `${i}`, type: CardType.Empty, label: `${l}`});
-            l+=1
+            // add empty text card
+            result.push({key: `${i}`, type: CardType.Empty, label: ''});
         }
     }
     return result;
