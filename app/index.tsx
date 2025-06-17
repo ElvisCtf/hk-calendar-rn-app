@@ -16,15 +16,7 @@ const Index = () => {
     const [year, setYear] = useState(currentYear);
     const [month, setMonth] = useState(currentMonth);
     const [isShowThisMonthOnly, setIsShowThisMonthOnly] = useState(false);
-  
-    function nextMonth() {
-        setMonth(prev => prev >= 12 ? 1 : prev + 1);
-    }
-
-    function prevMonth() {
-        setMonth(prev => prev <= 1 ? 12 : prev - 1);
-    }
-
+    
     return (
         <SafeAreaProvider>
         <SafeAreaView style={styles.container}>
