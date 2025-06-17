@@ -13,41 +13,41 @@ const currentYear = getCurrentYear();
 const currentMonth = getCurrentMonth();
 
 const Index = () => {
-  const [year, setYear] = useState(currentYear);
-  const [month, setMonth] = useState(currentMonth);
-  const [isShowThisMonthOnly, setIsShowThisMonthOnly] = useState(false);
+    const [year, setYear] = useState(currentYear);
+    const [month, setMonth] = useState(currentMonth);
+    const [isShowThisMonthOnly, setIsShowThisMonthOnly] = useState(false);
   
-  function nextMonth() {
-    setMonth(prev => prev >= 12 ? 1 : prev + 1);
-  }
+    function nextMonth() {
+        setMonth(prev => prev >= 12 ? 1 : prev + 1);
+    }
 
-  function prevMonth() {
-    setMonth(prev => prev <= 1 ? 12 : prev - 1);
-  }
+    function prevMonth() {
+        setMonth(prev => prev <= 1 ? 12 : prev - 1);
+    }
 
-  return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <YearPicker year={year} setYear={setYear}/>
-        <Spacer height={16} />
+    return (
+        <SafeAreaProvider>
+        <SafeAreaView style={styles.container}>
+            <YearPicker year={year} setYear={setYear}/>
+            <Spacer height={16} />
 
-        <MonthPicker month={month} setMonth={setMonth}/>
-        <Spacer height={16} />
+            <MonthPicker month={month} setMonth={setMonth}/>
+            <Spacer height={16} />
 
-        <FilterSwitch isFilter={isShowThisMonthOnly} setIsFilter={setIsShowThisMonthOnly} title="This month only"/>
-        <Spacer height={32} />
+            <FilterSwitch isFilter={isShowThisMonthOnly} setIsFilter={setIsShowThisMonthOnly} title="This month only"/>
+            <Spacer height={32} />
 
-        <CalendarGrid year={year} month={month} isShowThisMonthOnly={isShowThisMonthOnly}/>
-      </SafeAreaView>
-    </SafeAreaProvider>
-  );
+            <CalendarGrid year={year} month={month} isShowThisMonthOnly={isShowThisMonthOnly}/>
+        </SafeAreaView>
+        </SafeAreaProvider>
+    );
 }
 
 export default Index;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16
-  }
+    container: {
+        flex: 1,
+        padding: 16
+    }
 });
