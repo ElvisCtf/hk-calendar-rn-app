@@ -30,15 +30,15 @@ export default YearPicker;
 
 const styles = StyleSheet.create({
     hStack: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
         gap: 24,
-        width: '100%'
+        width: "100%"
     },
     group: {
-        flexDirection: 'row',
-        alignItems: 'center'
+        flexDirection: "row",
+        alignItems: "center"
     },
     title: {
         fontSize: 17,
@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 17,
-        textAlign: 'center',
+        textAlign: "center",
         width: 48,
     },
     icon: {
         fontSize: 24,
-        textAlign: 'center',
-        color: '#841584',
+        textAlign: "center",
+        color: "#841584",
         width: 24
     }
 });

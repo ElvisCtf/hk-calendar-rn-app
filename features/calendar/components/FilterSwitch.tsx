@@ -13,8 +13,8 @@ const FilterSwitch: React.FC<FilterSwitchProps> = ({isFilter, setIsFilter, title
             <Text style={styles.title}>{title}</Text>
 
             <Switch
-                trackColor={{false: '#DDA853', true: '#841584'}}
-                thumbColor={isFilter ? '#f4f3f4' : '#3C3D37'}
+                trackColor={{false: "#DDA853", true: "#841584"}}
+                thumbColor={isFilter ? "#f4f3f4" : "#3C3D37"}
                 onValueChange={() => setIsFilter(prev => !prev)}
                 value={isFilter}
             />
@@ -25,11 +25,11 @@ export default FilterSwitch;
 
 const styles = StyleSheet.create({
   hStack: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     gap: 24,
-    width: '100%'
+    width: "100%"
   },
   title: {
     fontSize: 17,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 17,
-    textAlign: 'center',
+    textAlign: "center",
     width: 48,
   }
 });

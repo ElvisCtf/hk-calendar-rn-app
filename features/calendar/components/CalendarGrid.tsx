@@ -2,7 +2,7 @@ import { FlatList, Text, View, StyleSheet, Dimensions, ViewStyle } from "react-n
 import { getCalendar, CardType } from "../utils/CalendarUtils";
 
 const cardMargin = 3;
-const cardWidth = (Dimensions.get('window').width - 32 - (7 * cardMargin * 2)) / 7;
+const cardWidth = (Dimensions.get("window").width - 32 - (7 * cardMargin * 2)) / 7;
 
 type CalendarGridProps = {
     year: number,
@@ -47,32 +47,32 @@ const styles = StyleSheet.create({
         margin: cardMargin,
         height: 32,
         width: cardWidth,
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: "center",
+        justifyContent: "center"
     },
     day: {
         margin: cardMargin,
         height: 48,
         width: cardWidth,
         borderRadius: 8,
-        backgroundColor: '#ddd',
-        alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: "#ddd",
+        alignItems: "center",
+        justifyContent: "center"
     },
     holiday: {
         margin: cardMargin,
         height: 48,
         width: cardWidth,
         borderRadius: 8,
-        backgroundColor: '#FF8A8A',
-        alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: "#FF8A8A",
+        alignItems: "center",
+        justifyContent: "center"
     },
     empty: {
         margin: cardMargin,
         height: 48,
         width: cardWidth,
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: "center",
+        justifyContent: "center"
     }
 });
