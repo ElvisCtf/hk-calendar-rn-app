@@ -27,8 +27,8 @@ export function getCalendar(year: number, month: number, isShowThisMonthOnly: bo
     
     const thisMonth = getThisMonthIndices(year, month);
     let j = 1;
-    let k = 1;
-    let l = getPrevMonthStartDate(year, month, thisMonth.startIndex - 7);
+    let prevIndex = getPrevMonthStartDate(year, month, thisMonth.startIndex - 7);
+    let nextIndex = 1;
 
     for (let i = 0; i < 42; i++) {
         if (i < 7) {
@@ -40,12 +40,12 @@ export function getCalendar(year: number, month: number, isShowThisMonthOnly: bo
             j+=1;
         } else if (i < thisMonth.startIndex && !isShowThisMonthOnly) {
             // add previous month date card
-            result.push({key: `${i}`, type: CardType.Empty, label: `${l}`});
-            l+=1
+            result.push({key: `${i}`, type: CardType.Empty, label: `${prevIndex}`});
+            prevIndex+=1
         } else if (i > thisMonth.endIndex && !isShowThisMonthOnly){
             // add next month date card
-            result.push({key: `${i}`, type: CardType.Empty, label: `${k}`});
-            k+=1;
+            result.push({key: `${i}`, type: CardType.Empty, label: `${nextIndex}`});
+            nextIndex+=1;
         } else {
             // add empty text card
             result.push({key: `${i}`, type: CardType.Empty, label: ''});
@@ -64,11 +64,13 @@ function getThisMonthIndices(year: number, month: number) {
 }
 
 function getPrevMonthStartDate(year: number, month: number, offset: number) {
-    if (month - 1 == 0) {
+    month-=1;
+    if (month == 0) {
         month = 12;
         year-=1;
     }
-    return getLastDate(year, month) - offset;
+    console.log(`${month} ${getLastDate(year, month - 1)} ${offset}`)
+    return getLastDate(year, month) - offset + 1;
 }
 
 function getStartDay(year: number, month: number) {
@@ -77,6 +79,6 @@ function getStartDay(year: number, month: number) {
 }
 
 function getLastDate(year: number, month: number) {
-    // 0 as the 3rd parameter means asking for the last day of the previous month, so it no need to be reduced by 1
+    // 0 as the 3rd parameter means asking for the last day of the previous month
     return (new Date(year, month, 0)).getDate();
 }
