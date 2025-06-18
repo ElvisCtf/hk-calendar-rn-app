@@ -7,8 +7,7 @@ This project is mainly for learning React Native. imo, I think it is beneficial 
 1. Show selected month calendar
 2. Show Hong Kong public holiday (WIP)
 
-<img src="https://github.com/user-attachments/assets/2f6c5b95-318e-4174-a0f9-d6a8669ba3b7" width="200"/>
-<img src="https://github.com/user-attachments/assets/3c62c399-9153-478a-be9a-45a614af7706" width="200"/>
+<img src="https://github.com/user-attachments/assets/86d35029-d9e2-4d09-865c-6dc9f0d540e7" width="200"/>
 <img src="https://github.com/user-attachments/assets/921f8d13-8b05-47b2-84f2-2f407f0e4679" width="200"/>
 
 ## API
