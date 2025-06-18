@@ -1,5 +1,6 @@
 import { FlatList, Text, View, StyleSheet, Dimensions, ViewStyle } from "react-native";
 import { getCalendar, CardType } from "../utils/CalendarUtils";
+import { useGetHolidays } from "../hooks/useGetHolidayData";
 
 const cardMargin = 3;
 const cardWidth = (Dimensions.get("window").width - 32 - (7 * cardMargin * 2)) / 7;
@@ -11,11 +12,12 @@ type CalendarGridProps = {
 };
 
 const CalendarGrid: React.FC<CalendarGridProps> = ({year, month, isShowThisMonthOnly}) => {
-    let array = getCalendar(year, month, isShowThisMonthOnly);
-
+    const {holidays, error} = useGetHolidays("/en.json");
+    let days = getCalendar(year, month, isShowThisMonthOnly, holidays);
+    
     return (
         <FlatList
-            data={array}
+            data={days}
             numColumns={7}
             renderItem={({ item }) => (
             <View style={getCardStyle(item.type)}>

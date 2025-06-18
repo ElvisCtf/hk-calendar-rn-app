@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { useState } from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import YearPicker from "@/features/calendar/components/YearPicker";
@@ -9,14 +9,11 @@ import { getCurrentMonth, getCurrentYear } from "@/features/calendar/utils/Calen
 import FilterSwitch from "@/features/calendar/components/FilterSwitch";
 
 
-const currentYear = getCurrentYear();
-const currentMonth = getCurrentMonth();
-
 const Index = () => {
-    const [year, setYear] = useState(currentYear);
-    const [month, setMonth] = useState(currentMonth);
+    const [year, setYear] = useState(getCurrentYear());
+    const [month, setMonth] = useState(getCurrentMonth());
     const [isShowThisMonthOnly, setIsShowThisMonthOnly] = useState(false);
-    
+
     return (
         <SafeAreaProvider>
         <SafeAreaView style={styles.container}>
