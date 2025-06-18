@@ -1,12 +1,14 @@
 import { Text, StyleSheet } from "react-native";
 import { useState } from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
 import YearPicker from "@/features/calendar/components/YearPicker";
 import MonthPicker from "@/features/calendar/components/MonthPicker";
 import CalendarGrid from "@/features/calendar/components/CalendarGrid";
 import Spacer from "@/common/components/Spacer";
 import { getCurrentMonth, getCurrentYear } from "@/features/calendar/utils/CalendarUtils";
 import FilterSwitch from "@/features/calendar/components/FilterSwitch";
+import { toastConfig } from "@/features/calendar/components/ToastConfig";
 
 
 const Index = () => {
@@ -27,6 +29,8 @@ const Index = () => {
             <Spacer height={32} />
 
             <CalendarGrid year={year} month={month} isShowThisMonthOnly={isShowThisMonthOnly}/>
+
+            <Toast config={toastConfig}/>
         </SafeAreaView>
         </SafeAreaProvider>
     );

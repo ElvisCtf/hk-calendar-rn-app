@@ -6,6 +6,7 @@ type DayModel = {
     key: string,
     type: CardType,
     label: string,
+    summary: string
 };
 
 export enum CardType {
@@ -34,23 +35,23 @@ export function getCalendar(year: number, month: number, isShowThisMonthOnly: bo
     for (let i = 0; i < 42; i++) {
         if (i < 7) {
             // add header card SUN ~ SAT
-            result.push({key: `${i}`, type: CardType.Header, label: weekdaysStartWithSUN[i]});
+            result.push({key: `${i}`, type: CardType.Header, label: weekdaysStartWithSUN[i], summary: ""});
         } else if (i >= thisMonth.startIndex && i <= thisMonth.endIndex) {
             // add selected month date card
-            const isHoliday = i % 7 == 0 || checkIsHoliday(month, currIndex, holidays);
-            result.push({key: `${i}`, type: isHoliday ? CardType.Holiday : CardType.Day, label: `${currIndex}`});
+            const {isHoliday, summary} = checkIsHoliday(i, month, currIndex, holidays);
+            result.push({key: `${i}`, type: isHoliday ? CardType.Holiday : CardType.Day, label: `${currIndex}`, summary: summary});
             currIndex+=1;
         } else if (i < thisMonth.startIndex && !isShowThisMonthOnly) {
             // add previous month date card
-            result.push({key: `${i}`, type: CardType.Empty, label: `${prevIndex}`});
+            result.push({key: `${i}`, type: CardType.Empty, label: `${prevIndex}`, summary: ""});
             prevIndex+=1
         } else if (i > thisMonth.endIndex && !isShowThisMonthOnly){
             // add next month date card
-            result.push({key: `${i}`, type: CardType.Empty, label: `${nextIndex}`});
+            result.push({key: `${i}`, type: CardType.Empty, label: `${nextIndex}`, summary: ""});
             nextIndex+=1;
         } else {
             // add empty text card
-            result.push({key: `${i}`, type: CardType.Empty, label: ''});
+            result.push({key: `${i}`, type: CardType.Empty, label: "", summary: ""});
         }
     }
     return result;
@@ -84,11 +85,15 @@ function getLastDate(year: number, month: number) {
     return (new Date(year, month, 0)).getDate();
 }
 
-function checkIsHoliday(month: number, day: number, holidays: HolidayModel[]) {
+function checkIsHoliday(index: number, month: number, day: number, holidays: HolidayModel[]): {isHoliday: boolean, summary: string} {
+    if (index % 7 == 0) {
+        return {isHoliday: true, summary: ""};
+    }
+
     for (let i = 0; i < holidays.length; i+=1) {
         if (holidays[i].day === day && holidays[i].month === month) {
-            return true;
+            return {isHoliday: true, summary: holidays[i].summary};
         }
     }
-    return false;
+    return {isHoliday: false, summary: ""};
 }

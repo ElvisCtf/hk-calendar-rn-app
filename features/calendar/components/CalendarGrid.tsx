@@ -1,4 +1,5 @@
-import { FlatList, Text, View, StyleSheet, Dimensions, ViewStyle } from "react-native";
+import { FlatList, Text, TouchableOpacity, StyleSheet, Dimensions, ViewStyle } from "react-native";
+import Toast from "react-native-toast-message";
 import { getCalendar, CardType } from "../utils/CalendarUtils";
 import { useGetHolidays } from "../hooks/useGetHolidayData";
 
@@ -20,9 +21,9 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({year, month, isShowThisMonth
             data={days}
             numColumns={7}
             renderItem={({ item }) => (
-            <View style={getCardStyle(item.type)}>
-                <Text>{item.label}</Text>
-            </View>
+                <TouchableOpacity style={getCardStyle(item.type)} onPress={() => showDayInfo(item.summary)}>
+                    <Text>{item.label}</Text>
+                </TouchableOpacity>
             )}
             keyExtractor={(item) => item.key}
         />
@@ -42,6 +43,15 @@ function getCardStyle(type: CardType): ViewStyle {
         case CardType.Empty:
                 return styles.empty
     }
+}
+
+function showDayInfo(message: string) {
+    if (message !== "")
+    Toast.show({
+        type: "Plain",
+        text2: message,
+        position: "bottom"
+    });
 }
 
 const styles = StyleSheet.create({
