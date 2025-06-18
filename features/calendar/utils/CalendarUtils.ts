@@ -68,7 +68,7 @@ function getThisMonthIndices(year: number, month: number) {
 
 function getPrevMonthStartDate(year: number, month: number, offset: number) {
     month-=1;
-    if (month == 0) {
+    if (month === 0) {
         month = 12;
         year-=1;
     }
@@ -86,7 +86,7 @@ function getLastDate(year: number, month: number) {
 }
 
 function checkIsHoliday(index: number, month: number, day: number, holidays: HolidayModel[]): {isHoliday: boolean, summary: string} {
-    if (index % 7 == 0) {
+    if (index % 7 === 0) {
         return {isHoliday: true, summary: ""};
     }
 

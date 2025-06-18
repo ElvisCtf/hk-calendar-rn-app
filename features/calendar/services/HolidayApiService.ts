@@ -12,9 +12,9 @@ export enum Language {
 
 export function getHolidayData(language: Language) {
     let endpoint = "/en.json";
-    if (language == Language.TC) {
+    if (language === Language.TC) {
         endpoint = "/tc.json";
-    } else if(language == Language.SC) {
+    } else if(language === Language.SC) {
         endpoint = "/sc.json";
     }
     return apiService.getData<HolidayDataResponseDto>(endpoint);
